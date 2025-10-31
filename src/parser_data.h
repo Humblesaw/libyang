@@ -337,6 +337,21 @@ LIBYANG_API_DECL LY_ERR lyd_parse_ext_data(const struct lysc_ext_instance *ext, 
         LYD_FORMAT format, uint32_t parse_options, uint32_t validate_options, struct lyd_node **tree);
 
 /**
+ * @brief Parse data from the input handler as a bare JSON value and connect it to the node parsed from the path.
+ *
+ * @param[in] ctx Context to connect with the tree being built here.
+ * @param[in] path Path to the node so the value in the input handler can be connected to it.
+ * @param[in] in Input handler with the value in the JSON format.
+ * @param[in] format Currently only LYD_JSON is supported.
+ * @param[in] options Options for new values, see @ref newvaloptions.
+ * @param[out] tree Full parsed data tree, note that NULL can be a valid tree.
+ * @return LY_SUCCESS in case of successful parsing.
+ * @return LY_ERR value in case of error. Additional error information can be obtained from the context using ly_err* functions.
+ */
+LIBYANG_API_DECL LY_ERR lyd_parse_json_value_fragment(const struct ly_ctx *ctx, const char *path, struct ly_in *in,
+        LYD_FORMAT format, uint32_t options, struct lyd_node **tree);
+
+/**
  * @ingroup datatree
  * @defgroup datatype Data operation type
  *
